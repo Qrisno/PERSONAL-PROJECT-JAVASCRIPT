@@ -106,8 +106,6 @@ export class Transaction {
                         this.logs.push({
                             index: m.index,
                             meta: m.meta,
-                            storeBefore: strBefore,
-                            storeAfter: strAfter,
                             error: {
                                 name: err.name,
                                 message: err.message,
