@@ -1,5 +1,5 @@
 import { Transaction } from "./main.mjs";
-import { scenario } from "./success.mjs";
+import { scenario } from "./callFail.mjs";
 
 const transaction = new Transaction();
 

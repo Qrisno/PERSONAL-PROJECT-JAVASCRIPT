@@ -126,7 +126,7 @@ export class Transaction {
                                     try {
 
                                         this.store = await this.inOrder[r].restore(this.store);
-                                        console.log(this.store);
+
 
                                     } catch (e) {
                                         throw new Error(`On the index:${this.inOrder[r].index}! An error occured: ${e}!`);
@@ -146,7 +146,7 @@ export class Transaction {
                         }
                         if (r === 0) {
                             this.store = null;
-                            console.log(this.store);
+
                             console.log('FAILED');
                             console.log('Restored without an error (all steps were successfully rollbacked)');
 
