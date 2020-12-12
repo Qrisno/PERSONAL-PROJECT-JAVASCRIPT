@@ -1,5 +1,5 @@
 import lodash from 'lodash';
-import { scenario } from './callFail.mjs'
+import { scenario } from './callFail.mjs';
 
 export class Transaction {
     constructor() {
