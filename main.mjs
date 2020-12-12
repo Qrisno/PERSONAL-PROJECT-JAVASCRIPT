@@ -1,5 +1,5 @@
 import lodash from 'lodash';
-import { scenario } from './callFail.mjs';
+import { scenario } from './callFail.mjs'
 
 export class Transaction {
     constructor() {
@@ -123,6 +123,7 @@ export class Transaction {
 
                                 try {
                                     let validate;
+                                    let validate1;
                                     await this.inOrder[r].restore(this.store).then((res) => {
                                         this.store = res;
                                         if (r === 0) {
@@ -138,7 +139,11 @@ export class Transaction {
                                         console.log('FAILED');
                                         console.log("Restored with an error (one of the step's rollback was unsuccessful)");
                                         console.log(`Error occured : ${e.stack}`);
+                                        validate1 = 1;
                                     }));
+                                    if (validate1 === 1) {
+                                        break mainLoop;
+                                    }
                                     if (validate === 1) {
                                         break mainLoop;
                                     }
