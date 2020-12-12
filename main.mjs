@@ -1,5 +1,5 @@
 import lodash from 'lodash';
-import { scenario } from './success.mjs'
+import { scenario } from './callFail.mjs'
 
 export class Transaction {
     constructor() {
@@ -118,40 +118,43 @@ export class Transaction {
 
                         // m is an object in scenarios array
 
-                        for (var r = this.inOrder.indexOf(m); r > 0; --r) {
+                        for (var r = this.inOrder.indexOf(m); r >= 0; --r) {
 
 
                             if (this.inOrder[r].hasOwnProperty('restore')) {
+
                                 try {
-                                    try {
+                                    let validate;
+                                    await this.inOrder[r].restore(this.store).then((res) => {
+                                        this.store = res;
+                                        if (r === 0) {
+                                            this.store = null;
+                                            console.log(this.store);
+                                            console.log('FAILED');
+                                            console.log('Restored without an error (all steps were successfully rollbacked)');
+                                            validate = 1;
 
-                                        this.store = await this.inOrder[r].restore(this.store);
-
-
-                                    } catch (e) {
-                                        throw new Error(`On the index:${this.inOrder[r].index}! An error occured: ${e}!`);
-
+                                        }
+                                    }).catch((e => {
+                                        this.store = null;
+                                        console.log('FAILED');
+                                        console.log("Restored with an error (one of the step's rollback was unsuccessful)");
+                                        console.log(`Error occured : ${e.stack}`);
+                                    }));
+                                    if (validate === 1) {
+                                        break mainLoop;
                                     }
-                                } catch (er) {
-                                    this.store = null;
-                                    console.log('FAILED');
-                                    console.log("Restored with an error (one of the step's rollback was unsuccessful)");
-                                    console.log(er.message);
-                                    break;
+
+                                } catch (err) {
+                                    throw new Error(`On the index:${this.inOrder[r].index}! An error occured: ${err}!`);
+
                                 }
-                            } else {
-                                continue;
+
                             }
 
                         }
-                        if (r === 0) {
-                            this.store = null;
 
-                            console.log('FAILED');
-                            console.log('Restored without an error (all steps were successfully rollbacked)');
 
-                            break mainLoop;
-                        }
                         break;
                     }
 
