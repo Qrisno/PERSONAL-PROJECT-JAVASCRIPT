@@ -1,4 +1,5 @@
-export const scenario = [{
+export namespace scn{
+    export const scenario = [{
         index: 1,
         meta: {
             title: 'Read popular customers',
@@ -11,7 +12,7 @@ export const scenario = [{
         },
         // callback for rollback
         restore: async(store) => {
-
+            throw new Error('sd');
             return --store;
         }
     },
@@ -41,12 +42,13 @@ export const scenario = [{
         },
         // callback for main execution
         call: async(store) => {
-            throw new Error('Error');
+            store++;
             return store;
 
         },
         // callback for rollback
         restore: async(store) => {
+
             return --store;
         },
     },
@@ -69,3 +71,4 @@ export const scenario = [{
 
     }
 ];
+}

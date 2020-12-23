@@ -1,13 +1,13 @@
-import { Transaction } from "./main.mjs";
-import { scenario } from "./success.mjs";
+import { Transaction } from "./main";
+import { scn } from "./rollbackFail";
 
 const transaction = new Transaction();
 
 (async() => {
     try {
-        await transaction.dispatch(scenario);
-        const store = transaction.store; // {} | null
-        const logs = transaction.logs; // []
+        await transaction.dispatch(scn.scenario);
+        const store:number|Object = transaction.store; // {} | null
+        const logs:Array<Object> = transaction.logs; // []
         console.log(logs);
         console.log(store);
     } catch (err) {

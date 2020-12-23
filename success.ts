@@ -1,8 +1,10 @@
-export const scenario = [{
-        index: 1,
+export namespace scn{
+    export const scenario= [{
+        index:1,
         meta: {
             title: 'Read popular customers',
             description: 'This action is responsible for reading the most popular customers',
+            
         },
         // callback for main execution
         call: async(store) => {
@@ -11,7 +13,7 @@ export const scenario = [{
         },
         // callback for rollback
         restore: async(store) => {
-
+    
             return --store;
         }
     },
@@ -27,23 +29,24 @@ export const scenario = [{
             return store;
         },
         restore: async(store) => {
-
+    
                 return --store;
             }
             // callback for rollback
-
+    
     },
     {
         index: 3,
         meta: {
             title: 'Read popular customers',
-            description: 'This action is responsible for reading the most popular customers'
+            description: 'This action is responsible for reading the most popular customers',
+
         },
         // callback for main execution
         call: async(store) => {
             store++;
             return store;
-
+    
         },
         // callback for rollback
         restore: async(store) => {
@@ -60,12 +63,14 @@ export const scenario = [{
         call: async(store) => {
             store++;
             return store;
-
+    
         },
         restore: async(store) => {
             return --store;
         },
+       
         // callback for rollback
-
+    
     }
-];
+    ];
+}
