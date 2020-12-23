@@ -69,7 +69,6 @@ let Transaction = class Transaction {
                         this.inOrder.push(m);
                         strBefore = identity(_.cloneDeep(this.store));
                         this.store = identity(await m.call(this.store));
-                        console.log(typeof this.store);
                         strAfter = identity(_.cloneDeep(this.store));
                         this.logs.push({
                             index: m['index'],
