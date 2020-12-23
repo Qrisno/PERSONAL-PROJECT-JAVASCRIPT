@@ -7,7 +7,7 @@ import {obj} from './main'
             description: 'This action is responsible for reading the most popular customers',
         },
         // callback for main execution
-        call: (store) => {
+        call:async (store) => {
             store++;
             return store;
         },
