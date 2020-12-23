@@ -41,7 +41,7 @@ function classDecorator<T extends { new (...args: any[]): {} }>(
 
 @classDecorator
 export class Transaction{
-    store:Number|Object;
+    store:Number|Object|null;
     inOrder: Array<obj>;
     logs: Object[];
     array: Object[];
@@ -86,8 +86,8 @@ export class Transaction{
             for (let m of scenario) {
                 if (m['index'] === k) {
                    
-                    let strBefore:Number|Object;
-                    let strAfter:Number|Object;
+                    let strBefore:Number|Object|null;
+                    let strAfter:Number|Object|null;
                     
                     try {
                        
