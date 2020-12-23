@@ -51,7 +51,7 @@ export class Transaction{
         
     }
     @checker
-    async dispatch(scenario:obj[]) {
+    async dispatch<T extends obj>(scenario:T[]) {
         this.array = [];
         
         for ( let i of scenario) {
@@ -108,6 +108,7 @@ export class Transaction{
                         });
                         if (k === this.array.length) {
                             this.store = null;
+                            
                             console.log('SUCCESS');
 
                         }
