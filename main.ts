@@ -1,5 +1,4 @@
 import * as _ from "lodash";
-import {scn} from './success'
 function identity<T>(arg: T): T {
     return arg;
   }
