@@ -1,5 +1,6 @@
-export namespace scn{
-    export const scenario = [{
+import {obj} from './main'
+ export namespace scn{
+    export const scenario:obj[] = [{
         index: 1,
         meta: {
             title: 'Read popular customers',

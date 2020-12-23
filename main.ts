@@ -1,10 +1,10 @@
 import * as _ from "lodash";
-import {scn} from './success'
+
 function identity<T>(arg: T): T {
     return arg;
   }
 
-type obj={
+export type obj={
     index:number;
     meta: meta1;
     call(arg: any);
@@ -51,7 +51,7 @@ export class Transaction{
         
     }
     @checker
-    async dispatch(scenario:Array<obj>) {
+    async dispatch(scenario:obj[]) {
         this.array = [];
         
         for ( let i of scenario) {
